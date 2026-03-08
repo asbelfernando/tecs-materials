@@ -1,0 +1,50 @@
+# Big Data Laboratory: Hadoop and Spark Exercises
+
+## Author: asbelfernando
+## Date: 2026-03-08
+
+### Introduction
+Big Data refers to the massive volumes of data that cannot be stored or processed using traditional tools. This laboratory session will provide hands-on exercises using Hadoop and Spark, two of the most popular frameworks for dealing with big data.
+
+### Setup Instructions
+1. Create a Databricks account if you haven't already.
+2. Create a new cluster in Databricks and ensure it's running.
+3. Upload the datasets necessary for the exercises to your Databricks workspace.
+
+### Hadoop Exercises
+#### Exercise 1: Basics of HDFS
+- Task: Write a text file to HDFS and read it back.
+  - Command to write: `hadoop fs -put localfile.txt /user/hadoop/`
+  - Command to read: `hadoop fs -cat /user/hadoop/localfile.txt`
+
+#### Exercise 2: MapReduce
+- Task: Write a MapReduce job to count the number of occurrences of each word in a text file.
+  - Steps:
+    1. Create a Mapper class that emits key-value pairs.
+    2. Create a Reducer class that sums the counts.
+    3. Run the job using `hadoop jar your-jar-file.jar YourMainClass`
+
+### Spark Exercises
+#### Exercise 3: Introduction to Spark RDDs
+- Task: Create an RDD from a text file and perform transformations.
+  - Commands:
+    1. `val rdd = sc.textFile("/path/to/textfile.txt")`
+    2. `val wordCounts = rdd.flatMap(line => line.split(" ")).map(word => (word, 1)).reduceByKey(_ + _)`
+
+#### Exercise 4: Spark DataFrames
+- Task: Load a CSV file into a DataFrame and perform some basic operations.
+  - Command:
+    `val df = spark.read.option("header", true).csv("/path/to/data.csv")`
+
+#### Exercise 5: Spark SQL
+- Task: Register the DataFrame as a temporary view and run SQL queries.
+  - Command:
+    `df.createOrReplaceTempView("tableName")`
+    `spark.sql("SELECT * FROM tableName WHERE condition").show()`
+
+### Conclusion
+In this lab, you learned the basics of Hadoop and Spark. You executed fundamental tasks such as file handling in HDFS and processing data using Spark RDDs and DataFrames.
+
+### References
+- [Hadoop Documentation](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/Documentation.html)
+- [Spark Documentation](https://spark.apache.org/docs/latest/)
